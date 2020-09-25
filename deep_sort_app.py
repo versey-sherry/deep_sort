@@ -13,6 +13,78 @@ from deep_sort import nn_matching
 from deep_sort.detection import Detection
 from deep_sort.tracker import Tracker
 
+'''
+python tools/generate_detections.py \
+    --model=resources/networks/mars-small128.pb \
+    --mot_dir=./data/MOT20/train \
+    --output_dir=./resources/detections/MOT20_train
+
+python deep_sort_app.py \
+    --sequence_dir=./data/MOT17/train/MOT17-04-FRCNN \
+    --detection_file=./resources/detections/MOT17_train/MOT17-04-FRCNN.npy \
+    --min_confidence=0.5 \
+    --nn_budget=100 \
+    --output_file ./result
+
+python deep_sort_app.py \
+    --sequence_dir=./data/MOT17/train/MOT17-02-FRCNN \
+    --detection_file=./resources/detections/MOT17_train/MOT17-02-FRCNN.npy \
+    --min_confidence=0.5 \
+    --nn_budget=100 \
+    --output_file ./result/
+
+python deep_sort_app.py \
+    --sequence_dir=./data/MOT17/train/MOT17-09-FRCNN \
+    --detection_file=./resources/detections/MOT17_train/MOT17-09-FRCNN.npy \
+    --min_confidence=0.5 \
+    --nn_budget=100 \
+    --output_file ./result/
+
+python deep_sort_app.py \
+    --sequence_dir=./data/MOT17/train/MOT17-13-FRCNN \
+    --detection_file=./resources/detections/MOT17_train/MOT17-13-FRCNN.npy \
+    --min_confidence=0.5 \
+    --nn_budget=100 \
+    --output_file ./result/
+
+
+python deep_sort_app.py \
+    --sequence_dir=./data/MOT17/train/MOT17-11-FRCNN \
+    --detection_file=./resources/detections/MOT17_train/MOT17-11-FRCNN.npy \
+    --min_confidence=0.5 \
+    --nn_budget=100 \
+    --output_file ./result/    
+
+python deep_sort_app.py \
+    --sequence_dir=./data/MOT20/train/MOT20-01 \
+    --detection_file=./resources/detections/MOT20_train/MOT20-01.npy \
+    --min_confidence=0.5 \
+    --nn_budget=100 \
+    --output_file ./result
+
+python deep_sort_app.py \
+    --sequence_dir=./data/MOT20/train/MOT20-02 \
+    --detection_file=./resources/detections/MOT20_train/MOT20-02.npy \
+    --min_confidence=0.5 \
+    --nn_budget=100 \
+    --output_file ./result/
+
+python deep_sort_app.py \
+    --sequence_dir=./data/MOT20/train/MOT20-03 \
+    --detection_file=./resources/detections/MOT20_train/MOT20-03.npy \
+    --min_confidence=0.5 \
+    --nn_budget=100 \
+    --output_file ./result/
+
+python deep_sort_app.py \
+    --sequence_dir=./data/MOT20/train/MOT20-05 \
+    --detection_file=./resources/detections/MOT20_train/MOT20-05.npy \
+    --min_confidence=0.5 \
+    --nn_budget=100 \
+    --output_file ./result/    
+
+
+'''
 
 def gather_sequence_info(sequence_dir, detection_file):
     """Gather sequence information, such as image filenames, detections,
@@ -206,6 +278,7 @@ def run(sequence_dir, detection_file, output_file, min_confidence,
     visualizer.run(frame_callback)
 
     # Store results.
+    output_file = os.path.join(output_file, sequence_dir.split('/')[-1])+'.txt'
     f = open(output_file, 'w')
     for row in results:
         print('%d,%d,%.2f,%.2f,%.2f,%.2f,1,-1,-1,-1' % (
