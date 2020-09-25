@@ -19,12 +19,24 @@ needed to run the tracker:
 Additionally, feature generation requires TensorFlow (>= 1.0).
 
 ## Installation
+* Clone this repo
 
-First, clone the repository:
+creating an conda environment from an ``environment.yml`` file
 ```
-git clone https://github.com/nwojke/deep_sort.git
+conda env create -f environment.yml
 ```
-Then, download pre-generated detections and the CNN checkpoint file from
+The first line of the ``yml`` file sets the new environment's name. For more details see [Conda Documentation](https://docs.conda.io/projects/conda/en/latest/user-guide/tasks/manage-environments.html#creating-an-environment-from-an-environment-yml-file)
+
+Activate the new environment
+```
+conda activate deepSORT
+```
+Verify the new environment
+```
+conda env list
+```
+
+Download pre-generated detections and the CNN checkpoint file from
 [here](https://drive.google.com/open?id=18fKzfqnqhqW3s9zwsCbnVJ5XF2JFeqMp).
 
 *NOTE:* The candidate object locations of our pre-generated detections are
